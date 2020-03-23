@@ -51,6 +51,8 @@ img
 
 <script>
 
+import CompA from 'components/CompA'
+
 const completed = new Audio('statics/audio/mortel.mp3')
 const success = new Audio('statics/audio/good-notif.mp3')
 const fail = new Audio('statics/audio/negative-notif.mp3')
@@ -61,6 +63,9 @@ fail.type = 'audio/mp3';
 
 export default {
   name: 'PageGame1',
+  components: {
+    CompA
+  },
   methods: {
     generateIndices() {
       while (this.randomIndices.length < 9) {
@@ -77,6 +82,10 @@ export default {
       return this.images[this.randomIndices[index]]
     },
     click(index) {
+      console.log("CLICK")
+      this.$root.$emit('event')
+      this.$parent.$emit('event')
+      this.$emit('event')
       let i = 0
 
       if (this.images[this.randomIndices[index]].hidden === true) {
