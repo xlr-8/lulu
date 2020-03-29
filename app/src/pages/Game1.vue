@@ -35,6 +35,7 @@
         <img v-if="!getPic(8).hidden" :src="path + getPic(8).src" alt="getPic(8).alt">
       </div>
     </div>
+    <p><span v-html="stats">{{ stats }}</span></p>
   </div>
 </template>
 
@@ -51,7 +52,7 @@ img
 
 <script>
 
-import CompA from 'components/CompA'
+import { Stats} from '../components/Stats'
 
 const completed = new Audio('statics/audio/mortel.mp3')
 const success = new Audio('statics/audio/good-notif.mp3')
@@ -63,9 +64,6 @@ fail.type = 'audio/mp3';
 
 export default {
   name: 'PageGame1',
-  components: {
-    CompA
-  },
   methods: {
     generateIndices() {
       while (this.randomIndices.length < 9) {
@@ -82,10 +80,6 @@ export default {
       return this.images[this.randomIndices[index]]
     },
     click(index) {
-      console.log("CLICK")
-      this.$root.$emit('event')
-      this.$parent.$emit('event')
-      this.$emit('event')
       let i = 0
 
       if (this.images[this.randomIndices[index]].hidden === true) {
@@ -94,18 +88,37 @@ export default {
       for (i = 0; i < this.randomIndices[index] && this.images[i].hidden === true; i++) {
       }
       if (i === this.randomIndices[index]) {
-        this.images[i].hidden = true
+        this.images[i].hidden = true;
         if (i+1 === this.images.length) {
-          completed.play()
+          completed.play();
+          this.cr.reportFinish();
         } else {
-          success.play()
+          success.play();
+          this.cr.reportSuccess();
         }
       } else {
         fail.play()
+        this.cr.reportError();
       }
+      // Not updated when reporting Error, don't know why
+      this.stats = this.cr.showStats();
+      console.log(this.cr.showStats());
     }
   },
+  computed: {
+    vp: {
+      get: function () {
+        return this.stats;
+      },
+      set: function (d) {
+        this.stats = d;
+        console.log(this.stats)
+      }
+    }
+  },    
   created() {
+    this.cr = new Stats(); 
+    this.stats = this.cr.showStats();
     this.generateIndices();
   },
   data () {
@@ -126,5 +139,5 @@ export default {
     }
   }
 }
-</script>
 
+</script>
