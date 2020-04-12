@@ -54,6 +54,13 @@
   </q-layout>
 </template>
 
+<style scoped>
+* {
+/*	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;*/
+}
+</style>
+
+
 <script>
 import EssentialLink from 'components/EssentialLink'
 
@@ -75,9 +82,15 @@ export default {
         },
         {
           title: 'Game 1',
-          caption: 'Test the first game 1!',
+          caption: 'Test the first game!',
           icon: 'school',
           link: 'game1'
+        },
+        {
+          title: 'Game 2',
+          caption: 'Test the second game!',
+          icon: 'school',
+          link: 'game2'
         }
       ]
     }
