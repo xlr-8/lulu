@@ -1,21 +1,22 @@
 <template>
   <div class="main q-pa-md">
     <div id="7" class="game" v-on:click="click($event)">
-        <img v-if="!isHidden()" src="/statics/seven.png" alt="pic seven">
+        <img v-if="!isHidden()" src="/statics/images/numbers/seven.png" alt="pic seven">
     </div>
   </div>
 </template>
 
 <style scoped>
-@import '../assets/styles/animate.css';
+@import '~assets/styles/animate.min.css';
 
 .game {
   background: #FFFFFF; /* #e0e0e0;*/
 }
 
 * {
-	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
-}
+cursor: pointer;
+} /*url("https://www.pngfind.com/pngs/m/362-3624445_vole-clipart-cute-mouse-mouse-clip-art-hd.png"), auto;*/
+
 </style>
 
 <script>

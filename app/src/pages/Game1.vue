@@ -74,7 +74,7 @@ export default {
       }
     },
     getPath() {
-      return '/statics/'
+      return '/statics/images/numbers/'
     },
     getPic(index) {
       return this.images[this.randomIndices[index]]
@@ -123,7 +123,7 @@ export default {
   },
   data () {
     return {
-      path: '/statics/',
+      path: '/statics/images/numbers/',
       images: [
         {src: 'one.png'  , hidden: false, alt: 'picture one' },
         {src: 'two.png'  , hidden: false, alt: 'picture two' },

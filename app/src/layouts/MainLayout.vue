@@ -56,7 +56,8 @@
 
 <style scoped>
 * {
-/*	cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;*/
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+/*	cursor: url("https://www.pngfind.com/pngs/m/362-3624445_vole-clipart-cute-mouse-mouse-clip-art-hd.png"), auto;*/
 }
 </style>
 
