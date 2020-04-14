@@ -12,11 +12,6 @@
 .game {
   background: #FFFFFF; /* #e0e0e0;*/
 }
-
-* {
-cursor: pointer;
-} /*url("https://www.pngfind.com/pngs/m/362-3624445_vole-clipart-cute-mouse-mouse-clip-art-hd.png"), auto;*/
-
 </style>
 
 <script>

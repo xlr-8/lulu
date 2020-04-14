@@ -56,8 +56,7 @@
 
 <style scoped>
 * {
-  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
-/*	cursor: url("https://www.pngfind.com/pngs/m/362-3624445_vole-clipart-cute-mouse-mouse-clip-art-hd.png"), auto;*/
+	cursor: url("https://i.imgur.com/KmRgQkp.png"), auto;
 }
 </style>
 
@@ -92,6 +91,12 @@ export default {
           caption: 'Test the second game!',
           icon: 'school',
           link: 'game2'
+        },
+        {
+          title: 'Tutorial',
+          caption: 'Tutorial',
+          icon: 'school',
+          link: 'tutorial'
         }
       ]
     }
