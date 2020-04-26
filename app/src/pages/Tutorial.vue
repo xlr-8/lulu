@@ -8,7 +8,7 @@
             v-if="!image.hidden"
             v-bind:src="image.src"
             v-bind:alt="image.alt"
-            @mouseover="image.playSound()"
+            @mouseover="mouseover(image)"
             @click="click(image)"
         >
       </div>
@@ -61,13 +61,51 @@ import { Image } from '../components/Images'
 export default {
   name: 'Tutorial',
   methods: {
+    inactivityTime(time) {
+      var timeout;
+      var played = false;
+
+      window.onload = resetTimer;
+      // DOM Events
+      document.onmousemove = resetTimer;
+      document.onkeypress = resetTimer;
+
+      console.log("starting inactivity count");
+
+      function help() {
+        console.log("NEED HELP");
+        const completed = new Audio('statics/audio/mortel.mp3');
+
+        //completed.type = 'audio/mp3';
+        completed.play();
+        played = true;
+      }
+
+      function resetTimer() {
+        // 1000 milliseconds = 1 second
+        if (played === false) {
+          clearTimeout(timeout);
+          timeout = setTimeout(help, time)
+        }
+      }
+      return timeout;
+    },
+    mouseover(i) {
+      console.log(i.isViewed());
+      i.playSound();
+      i.setViewed(true);
+      console.log(i.isViewed());
+      if (this.images.every(function(img){ return img.isViewed() === true })) {
+        console.log("do something")
+      }
+    },
     click(i) {
       console.log("PARAMS: ", i)
       console.log("PHONEME: ", i.phoneme)
       console.log("SEARCHING: ", this.searching)
       console.log("EVENT: ", event.target.id)
 
-      if (i.phoneme === this.searching) {
+      if (i.containsPhoneme(this.searching)) {
         this.animateCSS('#' + event.target.id, "fadeOutLeft", function () { i.hidden = true})
         console.log("clicked: ", i.name)
       }
@@ -100,6 +138,7 @@ export default {
     let img1 = new Image("1", imagePath + "one.png", false, "image-one.png", soundPath + "good-notif.mp3", "e");
     let img2 = new Image("2", imagePath + "two.png", false, "image-two.png", soundPath + "negative-notif.mp3", "t");
 
+    this.timeout;
     this.searching = phoneme;
     this.images = [
       img1,
@@ -109,6 +148,7 @@ export default {
  	mounted() {
     this.animateCSS("#img1", "fadeInRightBig")
     this.animateCSS("#img2", "fadeInRightBig")
+    this.timeout = this.inactivityTime(5000);
   },
  data () {
    return {images: this.images}}

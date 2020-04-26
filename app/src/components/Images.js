@@ -4,6 +4,7 @@ export class Image {
 
     that.name = name;
     that.src = srcPath;
+    that.viewed = false;
     that.hidden = hidden;
     that.alt = alt;
     that.sound = new Audio(soundFile);
@@ -17,10 +18,18 @@ export class Image {
     that.playSound = function() {
       that.sound.play();
     }
-  }
 
-  containsPhoneme(p) {
-    return p === that.phoneme;
+    that.setViewed = function(v) {
+      that.viewed = v;
+    }
+    
+    that.containsPhoneme = function(p) {
+      return p === that.phoneme;
+    }
+  
+    that.isViewed = function() {
+      return that.viewed;
+    }
   }
 }
 
