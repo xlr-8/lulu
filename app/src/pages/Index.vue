@@ -32,7 +32,7 @@ export default {
   methods: {
     getGreetings: function () {
       console.log("Greetings:", this.greetings);
-      API.get('/greetings')
+      API.get('/')
         .then(response => {
           console.log(response)
           console.log(response.data)
